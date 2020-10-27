@@ -49,10 +49,10 @@ function setup() {
   score = 0;
   count = 1;
   
-  gameover = createSprite(displayWidth/2, displayHeight/2-50,30,30);
+  gameover = createSprite(displayWidth/2-300, displayHeight/2-50,30,30);
   gameover.addImage("textGameOver_1",Gameover);
 
-  restart = createSprite(displayWidth/2, displayHeight/2+30,30,30);
+  restart = createSprite(displayWidth/2-300, displayHeight/2+30,30,30);
   restart.addImage("restart",Restart);
 
   gameover.visible = false;
@@ -61,14 +61,14 @@ function setup() {
   invisibleGround = createSprite(displayWidth/2,displayHeight/2+300,displayWidth,5);
   invisibleGround.visible = false;
   
-  monkey2 = createSprite(50,displayHeight/2+170,30,50);
+  monkey2 = createSprite(50,displayHeight/2+200,30,50);
   monkey2.addImage("monkeycollided",monkey_collided);
   monkey2.visible = false;
 }
 
 function draw() {
    background("black");
- 
+
  if(gamestate === PLAY){
    
     score = score + Math.round(World.frameRate/40);
@@ -77,7 +77,7 @@ function draw() {
       bg.x = bg.width/2;
     }
  
- if(keyDown("space") && monkey.y>=displayHeight/2+90){
+ if(keyDown("space") && monkey.y>=displayHeight/2+200){
    monkey.velocityY = -10;
  }
  
@@ -109,6 +109,10 @@ function draw() {
      case 12 : monkey.scale = 0.18;
        break;
    }
+
+  camera.position.x = monkey.x;
+  camera.position.y = monkey.y;
+ 
   
  }
  
@@ -148,8 +152,8 @@ function draw() {
  fill("black");
  textSize(25);
  textFont(BOLD);
- text("Survived Time: " + score + " sec",20,displayHeight/8-15);
- text("Monkey Energy: " + count,20,displayHeight/8+15);
+ text("Survived Time: " + score + " sec",0,displayHeight/8-15+270);
+ text("Monkey Energy: " + count,0,displayHeight/8+15+270);
 }
 
 function reset(){
@@ -194,11 +198,11 @@ function b(){
   
   if(World.frameCount % 280===0){
     
-    var banana = createSprite(displayWidth,displayHeight/2+20,10,40);
+    var banana = createSprite(displayWidth,displayHeight/2+210,10,40);
     banana.addImage("Banana",bananaImg);
     banana.scale = 0.05;
    
-    banana.y = random(displayHeight/2-20,displayHeight/2+10); 
+    banana.y = random(displayHeight/2,displayHeight/2+70); 
     
     banana.velocityX = -6;
     
